@@ -33,6 +33,7 @@ function App() {
       setTheme("light");
     }
   }, []);
+  
   return (
     <Suspense fallback={<AppLoader />}>
       <AppLayout theme={theme}>
