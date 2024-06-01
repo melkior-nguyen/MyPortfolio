@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
 interface ButtonProps {
   style?: React.CSSProperties;
@@ -6,20 +6,22 @@ interface ButtonProps {
   type?: "outline" | "variant";
   label: string;
   icon?: React.ReactNode;
+  handleClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 const AppButton = (props: ButtonProps) => {
   const {
     style,
-    size = "medium",
+    size = "small",
     type = "variant",
     label = "button",
     icon,
+    handleClick,
   }: ButtonProps = props;
 
   const sizes = {
-    small: "h-8 px-4 text-md rounded-lg",
-    medium: "h-10 px-4 text-md rounded-lg",
+    small: "h-8 px-4 text-sm rounded-lg",
+    medium: "h-10 px-4  rounded-lg",
   };
 
   const types = {
@@ -29,8 +31,9 @@ const AppButton = (props: ButtonProps) => {
 
   return (
     <button
-      className={`flex items-center gap-2 ${sizes[size]} ${types[type]} `}
+      className={`flex items-center gap-2 ${sizes[size]} ${types[type]} cursor-pointer`}
       style={style}
+      onClick={handleClick}
     >
       {label}
       {icon && (

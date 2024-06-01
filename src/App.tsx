@@ -3,6 +3,8 @@ import AppHeader from "./components/AppHeader/AppHeader";
 import AppLayout from "./components/AppLayout/AppLayout";
 import { Suspense, useEffect, useState } from "react";
 import AppLoader from "./components/AppLoader/AppLoader";
+import AppDialog from "./components/AppDialog/AppDialog";
+import { Global } from "./Utils/Global/Global";
 
 export type themeProps = "dark" | "light";
 
@@ -33,13 +35,14 @@ function App() {
       setTheme("light");
     }
   }, []);
-  
+
   return (
     <Suspense fallback={<AppLoader />}>
       <AppLayout theme={theme}>
         <AppHeader themeHandle={themeHandle} theme={theme} />
         <Outlet />
       </AppLayout>
+      <AppDialog ref={Global.appDialog.set} />
     </Suspense>
   );
 }
