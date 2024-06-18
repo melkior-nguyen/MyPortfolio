@@ -31,14 +31,14 @@ const Socials = ({ theme }: { theme: themeProps }) => {
     },
   ];
   return (
-    <div className="absolute left-[-1px] top-1/2 flex translate-x-[-100%] translate-y-[-50%] cursor-pointer flex-col items-center gap-y-2">
+    <div className="absolute left-0 top-1/2 flex  translate-y-[-50%] cursor-pointer flex-col items-center gap-y-2">
       {socialList.map((item: socialProps, i: number) => {
         return (
           <motion.a
             href="https://www.w3schools.com"
             target="blank"
             className="flex items-center justify-center transition-all rounded-full hover:shadow-md hover:shadow-gray-400"
-            initial={{ opacity: 0, y: -100 }}
+            initial={{ opacity: 0, y: -200 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 - i / 10, duration: 1 }}
             key={i}

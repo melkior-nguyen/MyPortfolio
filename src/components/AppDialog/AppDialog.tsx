@@ -47,7 +47,7 @@ const AppDialog = forwardRef((props, modalRef) => {
     <>
       {isOpen && (
         <motion.div className="fixed left-0 top-0 z-[9999] flex h-full w-full items-center justify-center bg-[rgba(0,0,0,0.5)]">
-          <div className="rounded-lg bg-white p-3 w-full sm:max-w-[420px] gap-6 flex flex-col">
+          <div className="rounded-lg bg-white p-6 w-full sm:max-w-[420px] gap-3 flex flex-col">
             <div className="flex items-start justify-between">
               <div className="flex flex-col">
                 <span className="uppercase font-bold">{modalvalue?.title}</span>

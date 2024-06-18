@@ -36,8 +36,8 @@ const AppLayout = ({
           theme === "dark" ? "" : "overlay,overlay,overlay,normal",
       }}
     >
-      <div className="relative flex h-full  w-full max-w-[1440px] flex-col">
-        <Socials theme={theme} />
+      <div className="relative flex h-full w-full max-w-[1440px] flex-col">
+        {/* <Socials theme={theme} /> */}
         <AppClock />
         {children}
       </div>

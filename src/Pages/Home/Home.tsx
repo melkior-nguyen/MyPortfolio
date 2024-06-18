@@ -1,8 +1,8 @@
 import SendIcon from "../../SVGs/SendIcon";
 import AppButton from "../../components/AppButton/AppButton";
-import ContentLayout from "../../components/ContentLayout/ContentLayout";
 import { motion } from "framer-motion";
 import Avatar from "../../assets/darkAvatar.png";
+// import Avatar2 from "../../assets/avatar.png";
 import { useNavigate } from "react-router-dom";
 
 const letters: { char: string }[] = [
@@ -41,89 +41,86 @@ const waveAnimation = {
 const Home = () => {
   const navigate = useNavigate();
   return (
-    <ContentLayout>
-      <div className="flex h-[80%] w-[80%] gap-3">
-        {/* Welcome */}
-        <motion.div
-          className="flex h-[80%] flex-[3] flex-col items-start justify-center"
-          initial={{ opacity: 0, x: -200 }}
-          whileInView={{
-            opacity: 1,
-            x: 0,
-            transition: {
-              duration: 1,
-              delay: 1,
-              ease: "easeOut",
-            },
-          }}
+    <div className="flex h-full w-full gap-3">
+      {/* Welcome */}
+      <motion.div
+        className="flex flex-[1] flex-col items-start justify-center"
+        initial={{ opacity: 0, x: -200 }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          transition: {
+            duration: 1,
+            delay: 1,
+            ease: "easeOut",
+          },
+        }}
+        viewport={{ once: true }}
+      >
+        <motion.h3
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.5, ease: "easeIn" }}
           viewport={{ once: true }}
+          className="text-2xl font-light dark:text-gray-400"
         >
-          <motion.h3
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.5, ease: "easeIn" }}
-            viewport={{ once: true }}
-            className="text-2xl font-light dark:text-gray-400"
-          >
-            Hello! I'm{" "}
-          </motion.h3>
-          <div
-            style={{
-              WebkitBoxReflect:
-                "below -10px linear-gradient(transparent, rgba(0,0,0,0.3))",
-            }}
-          >
-            {letters.map((item: { char: string }, i: number) => {
-              return (
-                <motion.span
-                  data-i={i + 1}
-                  className="text-5xl font-medium text-midnightBlue dark:text-white"
-                  key={i}
-                  custom={i}
-                  variants={waveAnimation}
-                  initial="initial"
-                  animate="show"
-                >
-                  {item.char}
-                </motion.span>
-              );
-            })}
-          </div>
-          <h3 className="mt-14 font-light text-gray-500 dark:text-gray-400">
-            "A creative Front End Developer with a passion for crafting
-            intuitive and visually stunning web experiences.
-            <br /> With expertise in HTML, CSS, and ReactJS... I transform
-            innovative ideas into seamless digital realities. <br /> Let's
-            collaborate to bring your vision to life!"
-          </h3>
-          <AppButton
-            label="Get In Touch"
-            size="medium"
-            type="variant"
-            handleClick={() => navigate("/contact")}
-            style={{ marginTop: "24px" }}
-            icon={<SendIcon />}
-          />
-        </motion.div>
-        {/* Avatar */}
-        <motion.div
-          className="flex flex-[2] items-start justify-end"
-          initial={{ opacity: 0, x: 200 }}
-          whileInView={{
-            opacity: 1,
-            x: 0,
-            transition: {
-              duration: 1,
-              delay: 1,
-              ease: "easeOut",
-            },
+          Hello! I'm{" "}
+        </motion.h3>
+        <div
+          style={{
+            WebkitBoxReflect:
+              "below -10px linear-gradient(transparent, rgba(0,0,0,0.3))",
           }}
-          viewport={{ once: true }}
         >
-          <img src={Avatar} alt="" className="w-[100%] object-cover" />
-        </motion.div>
-      </div>
-    </ContentLayout>
+          {letters.map((item: { char: string }, i: number) => {
+            return (
+              <motion.span
+                data-i={i + 1}
+                className="text-5xl font-medium text-midnightBlue dark:text-white"
+                key={i}
+                custom={i}
+                variants={waveAnimation}
+                initial="initial"
+                animate="show"
+              >
+                {item.char}
+              </motion.span>
+            );
+          })}
+        </div>
+        <h3 className="mt-14 font-light text-gray-500 dark:text-gray-400">
+          "A creative Front End Developer with a passion for crafting intuitive
+          and visually stunning web experiences.
+          <br /> With expertise in HTML, CSS, and ReactJS... I transform
+          innovative ideas into seamless digital realities. <br /> Let's
+          collaborate to bring your vision to life!"
+        </h3>
+        <AppButton
+          label="Get In Touch"
+          size="medium"
+          type="variant"
+          handleClick={() => navigate("/contact")}
+          style={{ marginTop: "24px" }}
+          icon={<SendIcon />}
+        />
+      </motion.div>
+      {/* Avatar */}
+      <motion.div
+        className="flex  flex-[1] bg-contain bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${Avatar})` }}
+        initial={{ opacity: 0, x: 200 }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          transition: {
+            duration: 1,
+            delay: 1,
+            ease: "easeOut",
+          },
+        }}
+        viewport={{ once: true }}
+      ></motion.div>
+    </div>
   );
 };
 

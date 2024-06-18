@@ -5,6 +5,7 @@ import { Suspense, useEffect, useState } from "react";
 import AppLoader from "./components/AppLoader/AppLoader";
 import AppDialog from "./components/AppDialog/AppDialog";
 import { Global } from "./Utils/Global/Global";
+import ContentLayout from "./components/ContentLayout/ContentLayout";
 
 export type themeProps = "dark" | "light";
 
@@ -40,7 +41,9 @@ function App() {
     <Suspense fallback={<AppLoader />}>
       <AppLayout theme={theme}>
         <AppHeader themeHandle={themeHandle} theme={theme} />
-        <Outlet />
+        <ContentLayout>
+          <Outlet />
+        </ContentLayout>
       </AppLayout>
       <AppDialog ref={Global.appDialog.set} />
     </Suspense>

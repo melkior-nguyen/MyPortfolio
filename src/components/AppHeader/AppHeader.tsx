@@ -7,6 +7,7 @@ import SunIcon from "../../SVGs/SunIcon";
 import { Global } from "../../Utils/Global/Global";
 import { useCallback, useEffect, useRef, useState } from "react";
 import AppButton from "../AppButton/AppButton";
+import AppDropdown, { AppDropdownRef } from "../AppDropdown/AppDropdown";
 
 const AppHeader = ({
   themeHandle,
@@ -18,13 +19,15 @@ const AppHeader = ({
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const navList: string[] = ["Home", "Projects", "Bio", "Contact"];
-  const [choicedLanguage, setChoicedLanguage] = useState<string>("English");
-  const selectRef = useRef<HTMLSelectElement | null>(null);
+  const [language, setLanguage] = useState<string>("English");
+
+  const dropdownRef = useRef<AppDropdownRef>();
 
   useEffect(() => {
-    if (localStorage.getItem("language")) {
-      setChoicedLanguage(String(localStorage.getItem("language")));
-    } 
+    const storedLanguage = localStorage.getItem("language");
+    if (storedLanguage) {
+      setLanguage(storedLanguage);
+    } else localStorage.setItem("language", "English");
   }, []);
 
   const handleOpencurrentLanguageModal = useCallback(() => {
@@ -36,33 +39,29 @@ const AppHeader = ({
         <div className="flex flex-col items-end">
           <div className="flex w-full justify-between">
             <p>Languages:</p>
-            <select
-              ref={selectRef}
-              name="language"
-              id=""
-              className="cursor-pointer"
-              defaultValue={choicedLanguage}
-            >
-              <option value="English">EN</option>
-              <option value="Vietnam">VN</option>
-            </select>
+            <AppDropdown
+              options={["English", "VietNam"]}
+              current={language}
+              ref={dropdownRef}
+            />
           </div>
           <AppButton
             label="Apply"
             size="small"
             handleClick={() => {
-              if (selectRef.current?.value) {
-                localStorage.setItem("language", selectRef.current?.value);
-                languageModal.closeDialog();
-                window.location.reload();
-              }
+              localStorage.setItem(
+                "language",
+                String(dropdownRef.current?.getOption()),
+              );
+              languageModal.closeDialog();
+              window.location.reload();
             }}
-            style={{ marginTop: "24px" }}
+            style={{ marginTop: "12px" }}
           />
         </div>
       ),
     });
-  }, [choicedLanguage]);
+  }, [language]);
 
   const handleToggle = () => {
     themeHandle();
@@ -121,7 +120,7 @@ const AppHeader = ({
           className="flex cursor-pointer items-center text-sm"
           onClick={handleOpencurrentLanguageModal}
         >
-          {choicedLanguage}
+          {language}
         </div>
         <div className="relative flex h-8 w-8 cursor-pointer items-center overflow-hidden rounded-full border  border-transparent transition-all hover:shadow hover:shadow-gray-300 dark:hover:shadow-white">
           <motion.div

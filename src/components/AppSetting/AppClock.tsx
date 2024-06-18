@@ -33,7 +33,7 @@ const AppClock = () => {
         opacity: 1,
       }}
       transition={{ duration: 1, delay: 1, ease: "easeIn" }}
-      className="absolute bottom-3 right-0 flex cursor-pointer items-center text-sm dark:text-white"
+      className="absolute bottom-1 right-0 flex cursor-pointer items-center text-xs dark:text-white"
     >
       <span>{time.hours}</span>:<span>{time.minutes}</span>:
       <span>{time.seconds}</span>
